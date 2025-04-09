@@ -1,28 +1,27 @@
 from rest_framework import serializers
+from octofit.models import User, Team, Activity, Leaderboard, Workout
 
-class UserSerializer(serializers.Serializer):
-    id = serializers.CharField()
-    email = serializers.EmailField()
-    name = serializers.CharField()
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'name']
 
-class TeamSerializer(serializers.Serializer):
-    id = serializers.CharField()
-    name = serializers.CharField()
-    members = serializers.ListField(child=serializers.CharField())
+class TeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = ['id', 'name', 'members']
 
-class ActivitySerializer(serializers.Serializer):
-    id = serializers.CharField()
-    user_id = serializers.CharField()
-    type = serializers.CharField()
-    duration = serializers.IntegerField()
-    date = serializers.DateField()
+class ActivitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Activity
+        fields = ['id', 'user', 'type', 'duration', 'date']
 
-class LeaderboardSerializer(serializers.Serializer):
-    id = serializers.CharField()
-    user_id = serializers.CharField()
-    points = serializers.IntegerField()
+class LeaderboardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Leaderboard
+        fields = ['id', 'user', 'points']
 
-class WorkoutSerializer(serializers.Serializer):
-    id = serializers.CharField()
-    name = serializers.CharField()
-    description = serializers.CharField()
+class WorkoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Workout
+        fields = ['id', 'name', 'description']
